@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<HTML ng-app="MusicArtistsApp">
+    <HEAD>
+        <TITLE>MUSIC ARTISTS</TITLE>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    </HEAD>
+    <BODY>
+        <div class="container" ng-controller="MusicArtistsList as ArtList">
+            <h1 class="header">Music Artists App</h1>
+
+            <div ng-show="message" ng-model="message"></div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>&nbsp;&nbsp;</th>
+                        <th>Artist</th>
+                        <th>Country</th>
+                        <th>Period</th>
+                        <th>Genre</th>
+                        <th>Claimed Sales</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="hidden" ng-model="ArtList.NewArtist.img"></td>
+                        <td><input class="form-control" ng-model="ArtList.NewArtist.artist"></td>
+                        <td><input class="form-control" ng-model="ArtList.NewArtist.country"></td>
+                        <td><input class="form-control" ng-model="ArtList.NewArtist.period"></td>
+                        <td><input class="form-control" ng-model="ArtList.NewArtist.genre"></td>
+                        <td><input class="form-control" ng-model="ArtList.NewArtist.claimedsales"></td>
+                        <td>
+                            <button class="btn btn-primary" ng-hide="ArtList.editMode" ng-click="ArtList.addArtist()">Add Artist</button>
+                            <button class="btn btn-info" ng-show="ArtList.editMode" ng-click="ArtList.clearAll()">Cancel</button>
+                        </td>
+                        <td><button class="btn btn-info" ng-click="ArtList.update(ArtList.NewArtist._id)">Update</button></td>
+                    </tr>
+                    <tr ng-repeat="artist in ArtList.musicartists">
+                        <td><img ng-src=""/></td>
+                        <td><span ng-bind="artist.artist"></span></td>
+                        <td><span ng-bind="artist.country"></span></td>
+                        <td><span ng-bind="artist.period"></span></td>
+                        <td><span ng-bind="artist.genre"></span></td>
+                        <td><span ng-bind="artist.claimedsales"></span></td>
+                        <td><button class="btn btn-danger" ng-click="ArtList.remove(artist._id)">Remove</button></td>
+                        <td><button class="btn btn-warning" ng-click="ArtList.edit(artist._id)">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="controllers/controller.js"></script>
+    </BODY>
+</HTML>
